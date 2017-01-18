@@ -4,7 +4,8 @@
 	"description": "Chrome extension that adds a random repository button to GitHub https://github.com/pschfr/rand-repo",
 	"version": "0.1.0",
 	"permissions": [
-		"*://github.com/*"
+		"*://github.com/*",
+		"*://api.github.com/*"
 	],
 	"content_scripts": [
 		{

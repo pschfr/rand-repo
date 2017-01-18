@@ -1,7 +1,7 @@
 window.onload = function() {
 	// init API key and URL, and XMLHttpRequest
 	var api_key = '7cf4478f4b20d12374e1923c805298612b880080';
-	var api_URL = 'https://api.github.com/repositories?access_token=' + api_key;
+	var api_URL = 'https://api.github.com/repositories?time=0access_token=' + api_key;
 	var xmlhttp = new XMLHttpRequest();
 
 	// begin connection to GitHub

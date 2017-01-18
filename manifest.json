@@ -5,5 +5,11 @@
 	"version": "0.1.0",
 	"permissions": [
 		"*://github.com/*"
+	],
+	"content_scripts": [
+		{
+			"matches": ["*://github.com/*"],
+			"js": ["index.js"]
+		}
 	]
 }

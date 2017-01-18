@@ -1,0 +1,9 @@
+{
+	"manifest_version": 2,
+	"name": "rand-repo",
+	"description": "Chrome extension that adds a random repository button to GitHub https://github.com/pschfr/rand-repo",
+	"version": "0.1.0",
+	"permissions": [
+		"*://github.com/*"
+	]
+}

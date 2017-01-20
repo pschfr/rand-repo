@@ -5,12 +5,17 @@
 	"version": "0.1.0",
 	"permissions": [
 		"*://github.com/*",
-		"*://api.github.com/*"
+		"*://api.github.com/*",
+		"storage"
 	],
 	"content_scripts": [
 		{
 			"matches": ["*://github.com/*"],
 			"js": ["index.js"]
 		}
-	]
+	],
+	"options_ui": {
+		"page": "options.html",
+		"chrome_style": true
+	}
 }

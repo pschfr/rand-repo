@@ -1,7 +1,12 @@
-window.onload = function() {
-	// init API key and URL, and XMLHttpRequest
-	var api_key = '7cf4478f4b20d12374e1923c805298612b880080';
-	var api_URL = 'https://api.github.com/repositories?time=0access_token=' + api_key;
+// get API token from Chrome options, init request
+chrome.storage.sync.get('api_token', function(data) {
+	var api_token = data['api_token'];
+	githubRequest(api_token);
+});
+
+function githubRequest(api_token) {
+	// init API key and XMLHttpRequest
+	var api_URL = 'https://api.github.com/repositories?time=0access_token=' + api_token;
 	var xmlhttp = new XMLHttpRequest();
 
 	// begin connection to GitHub
@@ -35,4 +40,4 @@ window.onload = function() {
 
 	// Close connection
 	xmlhttp.send(null);
-};
+}

@@ -2,18 +2,16 @@
 	"manifest_version": 2,
 	"name": "rand-repo",
 	"description": "Chrome extension that adds a random repository button to GitHub https://github.com/pschfr/rand-repo",
-	"version": "0.1.0",
+	"version": "0.3.0",
 	"permissions": [
 		"*://github.com/*",
 		"*://api.github.com/*",
 		"storage"
 	],
-	"content_scripts": [
-		{
-			"matches": ["*://github.com/*"],
-			"js": ["index.js"]
-		}
-	],
+	"content_scripts": [{
+		"matches": ["*://github.com/*"],
+		"js": ["index.js"]
+	}],
 	"options_ui": {
 		"page": "options.html",
 		"chrome_style": true

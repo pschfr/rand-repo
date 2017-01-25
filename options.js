@@ -1,12 +1,14 @@
 // Saves options to chrome.storage
 function save_options() {
-	var api_token = document.getElementById('api_token').value;
+	var api_token  = document.getElementById('api_token').value,
+		hide_forks = document.getElementById('hide_forks').checked;
 	chrome.storage.sync.set({
-		api_token: api_token
+		api_token:  api_token,
+		hide_forks: hide_forks
 	}, function() {
 		// Update status to let user know options were saved.
 		var status = document.getElementById('status');
-		status.textContent = 'API token saved!';
+		status.textContent = 'Options saved!';
 		// after 3 secs, remove status
 		setTimeout(function() {
 			status.textContent = '';
@@ -17,9 +19,11 @@ function save_options() {
 // Restores input values using the preferences stored in chrome.storage, default is empty
 function restore_options() {
 	chrome.storage.sync.get({
-		api_token: ''
+		api_token:  '',
+		hide_forks: ''
 	}, function(items) {
-		document.getElementById('api_token').value = items.api_token;
+		document.getElementById('api_token').value    = items.api_token;
+		document.getElementById('hide_forks').checked = items.hide_forks;
 	});
 }
 

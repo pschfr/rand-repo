@@ -1,9 +1,9 @@
-// get API token from Chrome options, init request
-chrome.storage.sync.get('api_token', function(data) {
-	githubRequest(data['api_token']);
+// get API token and other settings from Chrome options, begin request
+chrome.storage.sync.get(['api_token', 'hide_forks'], function(data) {
+	githubRequest(data['api_token'], data['hide_forks']);
 });
 
-function githubRequest(api_token) {
+function githubRequest(api_token, hide_forks) {
 	// generate random id between 1 and 70 million, API URL, and begin XMLHttpRequest
 	var rand_id = Math.floor(Math.random() * 70000000);
 	var api_URL = 'https://api.github.com/repositories?since=' + rand_id + '&access_token=' + api_token;
@@ -13,10 +13,23 @@ function githubRequest(api_token) {
 	xmlhttp.open('GET', api_URL, true);
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			// parse JSON response, get URL from first repo
+			// store JSON response
 			var response = JSON.parse(xmlhttp.responseText);
-			var rnd_url = response[0].html_url;
 
+			// loop through items in array, removing those that are forks
+			if (hide_forks == true) {
+				var length = response.length;
+				while (length--) {
+					if (response[length].fork) {
+						response.splice(response.indexOf(response[length]), 1);
+					}
+				}
+			}
+
+			// get URL from random repo
+			var rndrepo = Math.floor(Math.random() * response.length);
+			var rnd_url = response[rndrepo].html_url;
+			
 			// targets header nav
 			var header_nav = document.getElementsByClassName('header-nav');
 
